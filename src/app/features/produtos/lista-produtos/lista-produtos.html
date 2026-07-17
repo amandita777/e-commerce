@@ -1,3 +1,13 @@
+<h2>
+    Produto Selecionado:
+    @if (produtoSelecionado()){
+        <strong style="color: blueviolet;">
+            {{produtoSelecionado()}}
+        </strong>    
+    }@else {
+        <span style="color: palevioletred;"> Nenhum </span>
+    }
+</h2>
 @for (item of produtos(); track item){
     <app-produto
     [nome]= "item.nome"
