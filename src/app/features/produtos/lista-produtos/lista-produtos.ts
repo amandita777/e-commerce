@@ -3,6 +3,7 @@ import { Produto } from '../produto/produto';
 import { signal } from '@angular/core';
 import { computed } from '@angular/core'
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
+import { effect } from '@angular/core';
 
 @Component({
   selector: 'app-lista-produtos',
@@ -19,7 +20,8 @@ export class ListaProdutos {
     {nome: 'Headset Gamer', preco: 999.99}
   ]);
   exibirProduto (nome: string){
-    console.log ('Produto Selecionado ', nome);
+    //console.log ('Produto Selecionado ', nome);
+    this.produtoSelecionado.set(nome);
   }
   adicionarProduto(){
     this.produtos.update(listaAtual => [
@@ -35,4 +37,18 @@ export class ListaProdutos {
       {nome: 'Feijão Timbiras', preco: 400}
     ]);
   }
+   constructor(){
+    effect(() => {
+      console.log('Lista de Produtos Alterados: ', this.produtos());
+    });
+    effect(() => {
+      console.log('Valor total atualizado: ', this.valorTotal());
+    });
+    effect(() => {
+      if (typeof document !== 'undefined') {
+        document.title = `(${this.totalProdutos()}) Minha Loja`;
+      }    
+    });
+   }
+   produtoSelecionado = signal<string | null> (null);
 }
