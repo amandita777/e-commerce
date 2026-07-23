@@ -1,26 +1,33 @@
 <h2>
     Produto Selecionado:
     @if (produtoSelecionado()){
-        <strong style="color: blueviolet;">
+        <strong style="color: palevioletred">
             {{produtoSelecionado()}}
         </strong>    
     }@else {
-        <span style="color: palevioletred;"> Nenhum </span>
+        <span style="color: brown;"> Nenhum </span>
     }
 </h2>
-@for (item of produtos(); track item){
-    <app-produto
-    [nome]= "item.nome"
-    [preco] = "item.preco"
-    (produtoSelecionado)="exibirProduto($event)"
-    >
-    </app-produto>
-    <button (click)="adicionarAoCarrinho(item)">Adicionar ao Carrinho</button>
+@if (carregando()) {
+    <p>carregando produtos...</p>
+
 }
-<p><button (click)= "adicionarProduto()">Adicionar Produto</button></p>
+
+@if (!carregando()) {
+  @for (item of produtos(); track item.nome) {
+    <app-produto
+    [nome]="item.nome"
+    [preco]="item.preco"
+    (produtoSelecionado)="exibirProduto($event)"
+    ></app-produto>
+
+    <button (click)="adicionarAoCarrinho(item)">Adicionar ao Carrinho</button>
+  }
+}
+<!--<p><button (click)= "adicionarProduto()">Adicionar Produto</button></p>-->
 <h2>Total de produtos: {{totalProdutos()}}</h2>
 <h3>Valor total: {{valorTotal() | precoFormatado}}</h3>
-<p><button (click)= "substituirProdutos()">Subtituir Produtos</button></p>
+<!--<p><button (click)= "substituirProdutos()">Subtituir Produtos</button></p>-->
 <hr>
 <h2>Carrinho</h2>
 @for(item of carrinho(); track $index){
