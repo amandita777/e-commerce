@@ -15,7 +15,7 @@ type Produto = {
 export class produtosService {
     private http = inject(HttpClient);
     
-    private API = 'https://fakestoreapi.com/products';
+    private API = 'https://fakestoreapi.com/products'; //! API oficial e funcionando da nossa aplicação, não mexer!!!
 
     buscarProduto(){
         return this.http.get<ProdutoApi []>(this.API);
