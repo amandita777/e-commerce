@@ -31,10 +31,11 @@
         
           [nome] = "item.nome"
             [preco] = "item.preco"
+            (produtoSelecionado)="exibirProduto($event)"
+            (produtoAdicionado)="adicionarAoCarrinho($event)"
         >
-          
         </app-produto>
-        <button (click)="adicionarAoCarrinho(item)">Adicionar Ao Carrinho</button>
+        <!-- <button (click)="adicionarAoCarrinho(item)">Adicionar Ao Carrinho</button> -->
     }
    }
 <hr>
