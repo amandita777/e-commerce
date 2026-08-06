@@ -4,6 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
+import { inject } from '@angular/core';
+import  { CarrinhoService } from '../../../core/service/carrinho.service';
 
 @Component({
   selector: 'app-header',
@@ -13,4 +15,7 @@ import { UpperCasePipe } from '@angular/common';
 })
 export class Header {
   nomeLoja = 'TecnoMundo';
+
+  private carrinhoService = inject(CarrinhoService);
+  quantidade = this.carrinhoService.quantidadeItens;
 }
