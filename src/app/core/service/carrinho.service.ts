@@ -12,7 +12,7 @@ export class CarrinhoService{
 private carrinho = signal<{nome: string; preco: number}[]>([]);
 
 //! Seletores
-intes = computed(() => this.carrinho());
+itens = computed(() => this.carrinho());
 quantidadeItens = computed(() => this.carrinho().length); //! Quantidade de itens do carrinho
 totalItens = computed(() => 
     this.carrinho().reduce((total, item) => total + item.preco,0)
