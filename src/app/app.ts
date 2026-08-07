@@ -6,7 +6,11 @@ import { Header } from './shared/layout/header/header';
 
 @Component({
   selector: 'app-root',
+<<<<<<< HEAD
   imports: [RouterOutlet, RouterLink, Header],
+=======
+  imports: [RouterOutlet, Header],
+>>>>>>> 7c2e94e028043275bca6e5fe1d1a3b164cddd3f6
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

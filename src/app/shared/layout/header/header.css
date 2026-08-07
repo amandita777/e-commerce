@@ -1,9 +1,23 @@
+<<<<<<< HEAD
 mat-toolbar {
     position: sticky;
     top: 0;
     z-index: 1000;
+=======
+mat-toobal {
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+>>>>>>> 7c2e94e028043275bca6e5fe1d1a3b164cddd3f6
 }
 
 .flex-spacer {
     flex: 1 1 auto;
+<<<<<<< HEAD
+=======
+}
+
+button {
+    margin-left: 8px;
+>>>>>>> 7c2e94e028043275bca6e5fe1d1a3b164cddd3f6
 }
