@@ -1,0 +1,47 @@
+import { Injectable } from "@angular/core";
+import { signal } from "@angular/core";
+import { computed } from "@angular/core";
+
+type Usuario = {
+    email: string;
+    perfil: 'usuario';
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class AuthService {
+    private usurio = signal <Usuario | null>(null);
+    private tokenJwt = signal <string | null>(null);
+
+    usuarioAtual = computed(() => this.usurio());
+    token = computed(() => this.tokenJwt());
+    usurioLogado = computed(() => this.usurio() !== null);
+
+    login (email: string, senha: string): boolean{
+        if(!email || !senha){
+            return false;
+        }
+    
+    const tokenSimulado = 
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
+    'eyJzdWIiOiJhbHVub0B0ZXN0ZS5jb20iLCJwZXJmaWwiOiJ1c3VhcmlvIn0.' 
+    +'assinatura-simulada';
+    
+    this.usurio.set({
+        email,
+        perfil: 'usuario',
+    });
+
+    this.tokenJwt.set(tokenSimulado);
+    return true;
+    }
+    logout() {
+        this.usurio.set(null);
+        this.tokenJwt.set(null);
+    }
+    obterToken(): string | null {
+        return this.tokenJwt();
+    }
+}
