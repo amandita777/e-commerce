@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
 import { inject } from '@angular/core';
 import  { CarrinhoService } from '../../../core/service/carrinho.service';
+import { AuthService } from '../../../core/service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -18,4 +19,12 @@ export class Header {
 
   private carrinhoService = inject(CarrinhoService);
   quantidade = this.carrinhoService.quantidadeItens;
+  private authService = inject(AuthService);
+  usuarioLogado = this.authService.usurioLogado;
+  usuarioAtual = this.authService.usuarioAtual;
+
+  sair(){
+    this.authService.logout();
+  }
+  
 }
