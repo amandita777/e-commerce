@@ -3,6 +3,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
 import { inject } from '@angular/core';
 import  { CarrinhoService } from '../../../core/service/carrinho.service';
@@ -19,12 +20,17 @@ export class Header {
 
   private carrinhoService = inject(CarrinhoService);
   quantidade = this.carrinhoService.quantidadeItens;
+
   private authService = inject(AuthService);
   usuarioLogado = this.authService.usurioLogado;
   usuarioAtual = this.authService.usuarioAtual;
 
+  private router = inject(Router);
+
+
   sair(){
     this.authService.logout();
+    this.router.navigateByUrl('/login');
   }
   
 }
