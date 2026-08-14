@@ -4,6 +4,11 @@
 
     <p>Você está autenticado, porém não possui autorização para acessar essa área</p>
     <p>Nessa página, apenas usuários administradores podem acessar esse local</p>
-    <button type="button" routerLink="/produtos">Voltar para produtos</button>
-    <button type="button" routerLink="/login">Sair</button> <!-- Teste produção -->
+     
+    <br>
+    <img class="acesso-negado.img" src="imagem-acesso-negado.png" alt="acesso-negado">
+    <br>
+
+    <button mat-stroked-button type="button" routerLink="/produtos">Voltar para produtos</button>
+    <button mat-raised-button type="button" (click)="sair()">Sair</button> <!-- Teste produção -->
 </section>
