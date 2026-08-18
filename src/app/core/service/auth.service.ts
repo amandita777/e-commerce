@@ -15,13 +15,13 @@ type Usuario = {
 
 export class AuthService {
 
-    private usurio = signal <Usuario | null>(null);
+    private usuario = signal <Usuario | null>(null);
     private tokenJwt = signal <string | null>(null);
 
-    usuarioAtual = computed(() => this.usurio());
-    usurioLogado = computed(() => this.usurio() !== null);
+    usuarioAtual = computed(() => this.usuario());
+    usurioLogado = computed(() => this.usuario() !== null);
     token = computed(() => this.tokenJwt());
-    admin = computed(() => this.usurio()?.perfil === 'admin');
+    admin = computed(() => this.usuario()?.perfil === 'admin');
 
     login (email: string, senha: string): boolean{
         if(!email || !senha){
@@ -34,7 +34,7 @@ export class AuthService {
     'eyJzdWIiOiJhbHVub0B0ZXN0ZS5jb20iLCJwZXJmaWwiOiJ1c3VhcmlvIn0.' 
     +'assinatura-simulada';
     
-    this.usurio.set({
+    this.usuario.set({
         email,
         perfil,
     });
@@ -43,10 +43,13 @@ export class AuthService {
     return true;
     }
     logout() {
-        this.usurio.set(null);
+        this.usuario.set(null);
         this.tokenJwt.set(null);
     }
     obterToken(): string | null {
         return this.tokenJwt();
+    }
+    obterPerfil(): PerfilUsuario | null {
+        return this.usuario()?.perfil ?? null;
     }
 }
