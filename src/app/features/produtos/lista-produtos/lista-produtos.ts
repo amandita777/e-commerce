@@ -9,7 +9,7 @@ import { produtosService } from '../../../core/service/produtos.service';
 import { inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { CarrinhoService } from '../../../core/service/carrinho.service';
+import { CarrinhoFacade } from '../../../core/facades/carrinho.facade';
 
 @Component({
   selector: 'app-lista-produtos',
@@ -95,14 +95,14 @@ carregarProdutos(){
    erro = signal < string | null > (null);
 
    adicionarAoCarrinho(produto:{nome:string; preco: number}){
-    this.carrinhoService.adicionar(produto);
+    this.carrinhoFacade.adicionarProdutoCarrinho(produto);
    }
     //? ================ INJECT ===================
 private produtosService = inject(produtosService);
-public carrinhoService= inject(CarrinhoService);
+public carrinhoFacade= inject(CarrinhoFacade);
 
-quantidadeCarrinho = this.carrinhoService.quantidadeItens;
-totalCarrinho = this.carrinhoService.totalItens;
+quantidadeCarrinho = this.carrinhoFacade.quantidadeCarrinho;
+totalCarrinho = this.carrinhoFacade.totalCarrinho;
 }
  
 
