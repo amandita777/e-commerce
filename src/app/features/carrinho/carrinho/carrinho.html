@@ -11,11 +11,13 @@
                  <div>
                     <p><strong>{{item.nome}}</strong></p>
                     <p>{{item.preco | precoFormatado}}</p>
+
+                <button mat-stroked-button color="warn"
+                type="button"
+                (click)="removerItem($index)">
+                Remover</button>
+
                  </div>
-                 <button mat-stroked-button color="warn"
-                 type="button"
-                 (click)="removerItem($index)">
-                 Remover</button>
 
              </article>
             }
